@@ -1,0 +1,23 @@
+import cv2
+import numpy as np
+
+img = cv2.imread("img.jpg")
+blue, green, red = cv2.split(img)
+zeros = np.zeros(blue.shape, np.uint8)
+
+blueBGR = cv2.merge([blue, zeros, zeros])
+greenBGR = cv2.merge([zeros, green, zeros])
+redBGR = cv2.merge([zeros, zeros, red])
+
+cv2.imshow('Blue channel', blueBGR)
+cv2.waitKey(0)
+cv2.imshow('Green channel', greenBGR)
+cv2.waitKey(0)
+cv2.imshow('Red channel', redBGR)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+modified_image = cv2.merge((blue, green, red))
+cv2.imshow('Modified Image', modified_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
